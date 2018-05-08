@@ -41,9 +41,54 @@ def washington_dc
 	end
 end
 
+def raining
+	puts "it's raining! Grab your brolly!"
+	exit(0)
+end
+
 #write fn for new york
 	#if/else statement with some booleans
+def new_york
+	puts "Ok, where in NYC would you like to go?"
 
+	print "> "
+	answer = $stdin.gets.chomp
+	its_raining = true
+
+		if answer == "Empire State Building" && !its_raining
+			puts great_choice("Make sure you grab a jacket!")
+		elsif answer == "Times Square" && its_raining
+			raining
+		else 
+			go_home
+		end
+	
+end
+
+def new_orleans
+	puts "Jazz and Voodoo eh? Nola it is! Here are your options"
+
+	options = ['ghost tour', 'vampire tour', 'plantation tour', 'bourboun street', 'markets']
+
+	options.each do |option|
+		puts "#{option}"
+	end
+
+	print "> "
+	answer = $stdin.gets.chomp
+
+	if answer.include?("vampire") || ("ghost")
+		puts "Spooky!"
+	elsif 
+		answer.include?("plantation")
+		puts "A dose of history - interesting!"
+	else 
+		puts "Have a nice walk!"
+	end
+end
+
+
+				
 
 
 #write fn for new orleans
