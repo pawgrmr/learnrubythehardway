@@ -1,4 +1,4 @@
-#Override explicitly
+#Override explicitly - second type of inheritance
 class Parent
 
   def override()

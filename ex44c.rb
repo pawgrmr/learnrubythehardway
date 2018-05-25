@@ -1,3 +1,4 @@
+#Alter before or after - third type of inheritance
 class Parent
   def altered()
     puts "PARENT altered()"
