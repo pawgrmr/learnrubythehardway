@@ -9,6 +9,14 @@ class Hallway
 	end
 
 	def play()
+		current_room = @hall_map.opening_room()
+		last_room = @hall_map.end_room()
+	#while current room != last_room
+	while current_room != last_room
+		next_room_name = current_room.enter()#set the next room to current room 
+		current_room = @hall_map.next_room_name#once finished with the task in the current room run code for the next room
+	end
+		current_room.enter()
 	end
 end
 
@@ -51,6 +59,10 @@ class BoneMap
 	end
 
 	def opening_room()
+	end
+
+	def end_room()
+		puts "Zaldo has now completed his bonehunt!"
 	end
 end
 
