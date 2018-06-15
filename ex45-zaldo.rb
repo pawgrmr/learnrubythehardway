@@ -61,10 +61,11 @@ class Livingroom < Room
 	def enter()
 		puts "Zaldo has now entered the Livingroom."
 		puts "To continue on the bone hunt pick one of the following options"
+		puts @@options
 		print "> "
 
 	answer = $stdin.gets.chomp
-	if answer.include('1')
+	if answer.include?('1')
 		return 'laundry'
 	else 
 		puts "Oh no! Zaldo got distracted"
@@ -75,17 +76,40 @@ end
 
 class Laundry < Room
 	def enter()
+		puts "Zaldo has now entered the Laundry"
+		puts "Zaldo has to sniff around the washing machine and rummage through piles of clothing"
+		print "> "
+
+	action = $stdin.gets.chomp
+
+	if action == "sniff"
+		puts "Oh no! Zaldo has sniffed too much laundry powder and is now on a sneezing fit"
+		return 'retreat'
+	else action == "rummage"
+		puts "Great! Now Zaldo can move onto the Bedroom"
+		return 'bedroom'
 	end
+end
 end
 
 class Bedroom < Room
+	options = ["rug", "arm chair", "bed"]
 	def enter()
+		puts "Zaldo has now reached his final destination - the bedroom!"
+		puts "If he finds the bone, he gets to jump on the bed and eat it"
+		puts "Choose where Zaldo should begin:"
+		puts "#{options}"
+		print "> "
+
+	action = $stdin.gets.chomp
+
+	if action == "bed"
+		puts "Yay! Zaldo has found the bone!"
+		return 'finished'
+	else 
+		return 'retreat'
 	end
 end
-
-class Garage < Room
-	def enter()
-	end
 end
 
 class Finished < Room
@@ -101,7 +125,6 @@ class BoneMap
 		'livingroom' => Livingroom.new(),
 		'laundry' => Laundry.new(),
 		'bedroom' => Bedroom.new(),
-		'garage' => Garage.new(),
 		'retreat' => Retreat.new(),
 		'finished' => Finished.new()
 	}
@@ -118,14 +141,6 @@ class BoneMap
 	def opening_room()
 		return next_room(@start_room)
 	end
-
-	# def end_room()
-	# 	@end_room = 'garage'
-	# end
-
-	# def last_room()
-	# 	return next_room(@end_room)
-	# end
 end
 
 bone_map = BoneMap.new('backyard') # Line 1 set bone_map to an instance of the class Bonemap. Creates a new map with backyard passed to the start_room initialise function. Creates a new map object
