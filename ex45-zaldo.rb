@@ -15,15 +15,10 @@ class Hallway	# this is going to be the main entry point of the game	because of 
 		
 	while current_room != last_room
 		next_room_name = current_room.enter()
-		current_room = @bonemap.next_room(next_room_name)
-
-		# next_room_name = current_room.enter()
-		# current_room = @hall_map.next_room(next_room_name)#once finished with the task in the current room run code for the next room
-		#current_room.enter()
+		current_room = @room_map.next_room(next_room_name)
 	end
 	current_room.enter()
-end
-		
+	end
 end 
 
 
