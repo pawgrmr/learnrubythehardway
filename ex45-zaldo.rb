@@ -1,9 +1,9 @@
-class Room #This Scene class is a template for all of the other scenes that are more interesting. The intention is not to use Scene class directly but only the subclasses 
+class Room 
 	def enter()
 	end 
 end
 
-class Hallway	# this is going to be the main entry point of the game	because of the play method.	 
+class Hallway		 
 
 	def initialize(room_map) 
 		@room_map = room_map 
@@ -23,7 +23,7 @@ end
 
 
 class Retreat < Room 
-	def enter() #overrides the parent Room class method enter
+	def enter() 
 		puts "Zaldo retreated from the bonehunt!"
 		exit(1)
 	end
@@ -93,8 +93,9 @@ end
 end
 
 class Bedroom < Room
-	options = ["rug", "arm chair", "bed"]
+	
 	def enter()
+		options = ["rug", "arm chair", "bed"]
 		puts "Zaldo has now reached his final destination - the bedroom!"
 		puts "If he finds the bone, he gets to jump on the bed and eat it"
 		puts "Choose where Zaldo should begin:"
@@ -120,8 +121,8 @@ end
 
 class BoneMap
 
-	@@rooms = { # hash contains the room objects 
-		'backyard' => Backyard.new(), # these are the room_names matching with room objects.
+	@@rooms = { 
+		'backyard' => Backyard.new(), 
 		'livingroom' => Livingroom.new(),
 		'laundry' => Laundry.new(),
 		'bedroom' => Bedroom.new(),
@@ -129,7 +130,7 @@ class BoneMap
 		'finished' => Finished.new()
 	}
 
-	def initialize(start_room) #corresponds with bone_map = BoneMap.new('backyard').This method sets the variable @start_room to the value of start_room, which is the parameter, so it is whatever you passed in.
+	def initialize(start_room) 
 		@start_room = start_room
 	end
 
@@ -143,15 +144,9 @@ class BoneMap
 	end
 end
 
-bone_map = BoneMap.new('backyard') # Line 1 set bone_map to an instance of the class Bonemap. Creates a new map with backyard passed to the start_room initialise function. Creates a new map object
+bone_map = BoneMap.new('backyard') 
 a_game = Hallway.new(bone_map) 
-#Line 2 passes this newly created Map object to the Hallway initialize function (@room_map).This simply sets the variable @room_map to the value you passed in. So now Hallway has access to bone_map object
-#Line 2 set game to an instance of the class Hallway taking bone_map as a parameter (i.e. in this case backyard)
-a_game.play() # Line 3 run the code starting with backyard until the current_room != last_room.  the third line calls the play() method of the Hallway object
-next_room = BoneMap.new('livingroom')
-next_room = Hallway.new(next_room)
-next_room.play()
-
+a_game.play() 
 
 
 
