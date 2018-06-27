@@ -33,3 +33,31 @@ class TestGame < Test::Unit::TestCase
 		assert_equal(start, start.go('down').go('up'))
 	end
 end
+
+
+#Write a new test case in tests/test_ex47.rb that creates a miniature version of your game from Exercise 45. 
+#This is one function that is similar to the current functions, but using your game's room names and abbreviated descriptions. 
+#Remember to use Room.add_paths to create the map, and use assertions to confirm everything works as expected.
+
+# Test case for ex45-zaldo.rb
+class TestCase < Test::Unit::TestCase
+
+	def test_room()
+		bedroom = Room.new("Bedroom", """This is the final destination. It is the room the bone is hidden.""")
+		assert_equal("Bedroom", bedroom.name) 
+		assert_equal({}, bedroom.paths)
+	end
+
+	def test_room_paths()
+		hallway = Room.new("Hallway", "Test room hallway")
+		backyard = Room.new("Backyard", "Test room backyard")
+		livingroom = Room.new("livingroom", "Test room livingroom")
+
+		hallway.add_paths({'backyard' => backyard, 'livingroom' => livingroom})
+		assert_equal(backyard, hallway.go('backyard'))
+		assert_equal(livingroom, hallway.go('livingroom'))
+	end 
+end	
+
+
+
