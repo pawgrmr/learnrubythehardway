@@ -7,17 +7,18 @@ class Lexicon
 #make sure to return result
 
 	 	@@hash = {
-			'north' => 'direction'
+	 		'direction' => ['south', 'north', 'east']
 		}
 
+
 	def self.scan(sentence)
-		words = sentence.split
+		words = sentence.split(' ')
 		result = []
 
 		words.each do |word|
 			@@hash.each do |key, value|
-				if key.include?(word)
-					element = [value, word]
+					if value.include?(word)
+					element = [key, word]
 					result.push(element)
 				end
 				return result
@@ -25,4 +26,16 @@ class Lexicon
 		end
 	end
 end
+
+
+
+
+ # def test_directions()
+ #    assert_equal(Lexicon.scan("north"), [['direction', 'north']])
+ #    result = Lexicon.scan("north south east")
+
+ #    assert_equal(result, [['direction', 'north'],
+ #           ['direction', 'south'],
+ #           ['direction', 'east']])
+ #  end
 
