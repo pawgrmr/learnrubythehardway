@@ -12,21 +12,20 @@ class Lexicon
 
 	def self.scan(sentence)
 		words = sentence.split(' ')
-		count = 0
 		result = []
 
 		words.each do |word|
-			count += 1
-
-			@@hash.each do |key, value|
+			element = []
+				@@hash.each do |key, value|
 					if value.include?(word)
 					element = [key, word]
 					result.push(element)
+					end
 				end
-				return result
-			end
 		end
+				return result
 	end
+		
 end
 
 
