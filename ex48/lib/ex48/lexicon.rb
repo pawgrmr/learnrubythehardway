@@ -10,12 +10,14 @@ class Lexicon
 	 		'direction' => ['south', 'north', 'east']
 		}
 
-
 	def self.scan(sentence)
 		words = sentence.split(' ')
+		count = 0
 		result = []
 
 		words.each do |word|
+			count += 1
+
 			@@hash.each do |key, value|
 					if value.include?(word)
 					element = [key, word]
