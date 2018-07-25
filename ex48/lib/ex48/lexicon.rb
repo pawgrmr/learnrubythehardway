@@ -7,19 +7,23 @@ class Lexicon
 #make sure to return result
 
 	 	@@hash = {
-	 		'direction' => ['south', 'north', 'east']
+	 		'direction' => ['south', 'north', 'east'],
+	 		'verb' => ['go', 'kill', 'eat'],
+	 		'stop' => ['the', 'in', 'of'],
+	 		'noun' => ['bear', 'princess'], 
+	 		'number' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 		}
 
 	def self.scan(sentence)
 		words = sentence.split(' ')
-		result = []
+		result = [] # this array should contain arrays of [key word]
 
 		words.each do |word|
-			element = []
+			element = [] # push this array of [key,word] to the result array
 				@@hash.each do |key, value|
 					if value.include?(word)
 					element = [key, word]
-					result.push(element)
+					result.push(element) 
 					end
 				end
 		end
@@ -29,14 +33,9 @@ class Lexicon
 end
 
 
-
-
- # def test_directions()
- #    assert_equal(Lexicon.scan("north"), [['direction', 'north']])
- #    result = Lexicon.scan("north south east")
-
- #    assert_equal(result, [['direction', 'north'],
- #           ['direction', 'south'],
- #           ['direction', 'east']])
- #  end
-
+  # def test_numbers()
+  #   assert_equal(Lexicon.scan("1234"), [['number', 1234]])
+  #   result = Lexicon.scan("3 91234")
+  #   assert_equal(result, [['number', 3],
+  #          ['number', 91234]])
+  # end
