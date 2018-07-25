@@ -11,31 +11,38 @@ class Lexicon
 	 		'verb' => ['go', 'kill', 'eat'],
 	 		'stop' => ['the', 'in', 'of'],
 	 		'noun' => ['bear', 'princess'], 
-	 		'number' => ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10']
 		}
+
+	
 
 	def self.scan(sentence)
 		words = sentence.split(' ')
 		result = [] # this array should contain arrays of [key word]
-
 		words.each do |word|
-			element = [] # push this array of [key,word] to the result array
+			element = [] 
+
+				number = Lexicon.convert_integer(word)
+				if (number) #is true then return the following
+					element = ['number', number]
+					result.push(element)
+				end
+			# push this array of [key,word] to the result array
 				@@hash.each do |key, value|
 					if value.include?(word)
 					element = [key, word]
 					result.push(element) 
 					end
 				end
+
 		end
 				return result
 	end
-		
+
+	def self.convert_integer(word) #scan self and convert to integer - this becomes the number variable
+  		begin
+    		return Integer(word)
+  		rescue
+    		return nil
+  		end
+	end
 end
-
-
-  # def test_numbers()
-  #   assert_equal(Lexicon.scan("1234"), [['number', 1234]])
-  #   result = Lexicon.scan("3 91234")
-  #   assert_equal(result, [['number', 3],
-  #          ['number', 91234]])
-  # end

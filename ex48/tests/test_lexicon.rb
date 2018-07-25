@@ -36,4 +36,19 @@ class TestLexicon < Test::Unit::TestCase
            ['noun', 'princess']])
   	end
 
+  	def test_numbers()
+    assert_equal(Lexicon.scan("1234"), [['number', 1234]])
+    result = Lexicon.scan("3 91234")
+    assert_equal(result, [['number', 3],
+           ['number', 91234]])
+ 	end
+
+ 	def test_errors()
+    assert_equal(Lexicon.scan("ASDFADFASDF"), [['error', 'ASDFADFASDF']])
+    result = Lexicon.scan("bear IAS princess")
+    assert_equal(result, [['noun', 'bear'],
+           ['error', 'IAS'],
+           ['noun', 'princess']])
+  	end
+
 end
