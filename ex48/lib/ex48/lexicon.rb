@@ -17,9 +17,12 @@ class Lexicon
 
 	def self.scan(sentence)
 		words = sentence.split(' ')
+
+
 		result = [] # this array should contain arrays of [key word]
 		words.each do |word|
-			element = [] 
+			element = []
+
 
 				number = Lexicon.convert_integer(word)
 					if number #is true then return the following
@@ -44,7 +47,9 @@ class Lexicon
 				return result
 	end
 
+
 	def self.convert_integer(word) #scan self and convert to integer - this becomes the number variable
+  		number = /[0-9]/
   		begin
     		return Integer(word)
   		rescue
