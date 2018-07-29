@@ -1,4 +1,5 @@
 class Lexicon
+	require Enumerable
 #split sentence/user input into words
 #take each of the words and #if word matches the value in the direction hash, 
 # wrong : return it as an array of array with (word, [[direction, word]]) pairing.
@@ -35,18 +36,14 @@ class Lexicon
 					if value.include?(word)
 						element = [key, word]
 						result.push(element) 
-
-					# elsif value.exclude?(word) 
-					# 	element = ['error', word]
-					# 	result.push(element)
+					elsif value.does_not_include(@@hash.value)
+						element = ['error', word]
+					 	result.push(element)
 						
 					end
 				end
 
-					if element.!include?(@@hash.values)
-						element = ['error', word]
-						result.push(element)
-					end
+				
 				 	# while element.empty?
 				  #       element = ['error', word]
 				  #       result.push(element)
@@ -64,4 +61,10 @@ class Lexicon
   		end
 	end
 
+end
+
+module Enumerable
+	def does_not_include(value)
+		!include?(value)
+	end
 end
