@@ -22,18 +22,36 @@ class Lexicon
 			element = [] 
 
 				number = Lexicon.convert_integer(word)
-				if (number) #is true then return the following
-					element = ['number', number]
-					result.push(element)
-				end
+					if number #is true then return the following
+						element = ['number', number]
+						result.push(element) 
+					# elsif 
+					# 	number.exclude?(word)
+					# 	element = ['error', word]
+					# 	result.push(element)
+					end
 			# push this array of [key,word] to the result array
 				@@hash.each do |key, value|
 					if value.include?(word)
-					element = [key, word]
-					result.push(element) 
+						element = [key, word]
+						result.push(element) 
+
+					# elsif value.exclude?(word) 
+					# 	element = ['error', word]
+					# 	result.push(element)
+						
 					end
 				end
 
+					if element.!include?(@@hash.values)
+						element = ['error', word]
+						result.push(element)
+					end
+				 	# while element.empty?
+				  #       element = ['error', word]
+				  #       result.push(element)
+				  #       break
+				  #   end
 		end
 				return result
 	end
@@ -42,7 +60,8 @@ class Lexicon
   		begin
     		return Integer(word)
   		rescue
-    		return nil
+    		return 'error'
   		end
 	end
+
 end
