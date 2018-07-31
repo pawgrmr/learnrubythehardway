@@ -65,12 +65,12 @@ class Sentence
   end
 
 
-  def parse_subject(word_list)
-  skip(word_list, 'stop')
+  def self.parse_subject(word_list)
+  self.skip(word_list, 'stop')
   next_word = peek(word_list)
 
       if next_word == 'noun'
-        return match(word_list, 'noun')
+        return self.match(word_list, 'noun')
       elsif next_word == 'verb'
         return ['noun', 'player']
       else
@@ -78,11 +78,11 @@ class Sentence
       end
   end
 
-  def parse_verb(word_list)
-    skip(word_list, 'stop') # skip all the stop words (see lexicon.rb)
+  def self.parse_verb(word_list)
+    self.skip(word_list, 'stop') # skip all the stop words (see lexicon.rb)
 
-      if peek(word_list) == 'verb'
-        return match(word_list, 'verb')
+      if self.peek(word_list) == 'verb'
+        return self.match(word_list, 'verb')
       else
         raise ParserError.new("Expected a verb next.")
       end

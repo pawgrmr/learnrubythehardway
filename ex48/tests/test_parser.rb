@@ -22,15 +22,27 @@ def test_match()
 end
 
 def test_skip()
-	# assert_equal(Sentence.peek([["verb", "run"]]), "verb")
-	assert_equal((Sentence.skip([["stop", "the"], ["verb", "eat"]], "verb")), nil)
-	# assert_not_equal(Sentence.peek([["stop", "the"]]), "verb")
+	assert_equal((Sentence.skip([["stop", "the"], ["verb", "eat"]], "stop")), nil)
 end
 
-def test_subject
+def test_parse_subject()
+	assert_equal((Sentence.parse_subject([["noun", "princess"], ["verb", "eat"]])), ["noun", "princess"], ["noun", "player"])
+	assert_equal((Sentence.parse_subject([["verb", "eat"],["noun", "princess"]])), ["noun", "player"])
+	assert_equal((Sentence.parse_subject([["noun", "princess"], ["stop", "the"]])), ["noun", "princess"])
+	assert_not_equal((Sentence.parse_subject([["verb", "eat"], ["noun", "princess"]])), ["verb", "eat"], ["verb", "player"])
+	assert_raise ParserError do 
+		Sentence.parse_subject(nil)
+	end
+	assert_raise ParserError do 
+		Sentence.parse_subject(["direction", "north"])
+	end
 end
 
-def test_verb
+def test_verb()
+	assert_equal(["verb", "run"], (Sentence.parse_verb([["verb", "run"], ["noun", "bear"]])))
+	assert_raise ParserError do
+		Sentence.parse_verb([["direction", "north"], ["noun", "bear"]])
+	end
 end
 
 def test_object
