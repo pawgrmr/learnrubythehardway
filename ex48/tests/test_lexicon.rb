@@ -13,7 +13,7 @@ class TestLexicon < Test::Unit::TestCase
   	end
 
 
-	def test_verbs()
+	  def test_verbs()
     assert_equal(Lexicon.scan("go"), [['verb', 'go']])
     result = Lexicon.scan("go kill eat")
     assert_equal(result, [['verb', 'go'],
@@ -41,9 +41,9 @@ class TestLexicon < Test::Unit::TestCase
     result = Lexicon.scan("3 91234")
     assert_equal(result, [['number', 3],
            ['number', 91234]])
- 	end
+ 	  end
 
- 	def test_errors()
+ 	  def test_errors()
     assert_equal(Lexicon.scan("ASDFADFASDF"), [['error', 'ASDFADFASDF']])
     result = Lexicon.scan("bear IAS princess")
     assert_equal(result, [['noun', 'bear'],

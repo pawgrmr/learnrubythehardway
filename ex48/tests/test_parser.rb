@@ -13,18 +13,18 @@ require "test/unit"
 class TestParser < Test::Unit::TestCase
 
 def test_peek()
-	assert_equal(Sentence.peek(["verb", "run"]), "verb")
-	result = Sentence.peek(["verb", "run"])
-	assert_equal(result, ["verb"])
+	assert_equal(Sentence.peek([["verb", "run"], ["noun", "princess"]]), "verb")
 end
+
 
 def test_match()
-	assert_equal(Sentence.match([["noun", "princess"], ["verb, eat"]]), ["noun", "princess"], "noun")
-	result = Sentence.match([["noun", "princess"], ["verb, eat"]])
-	assert_equal(result, ["noun"])
+	assert_equal(Sentence.match([["noun", "princess"], ["verb", "eat"]], "noun"), ["noun", "princess"], "noun")
 end
 
-def test_skip
+def test_skip()
+	# assert_equal(Sentence.peek([["verb", "run"]]), "verb")
+	assert_equal((Sentence.skip([["stop", "the"], ["verb", "eat"]], "verb")), nil)
+	# assert_not_equal(Sentence.peek([["stop", "the"]]), "verb")
 end
 
 def test_subject
@@ -40,3 +40,4 @@ def test_sentence
 end
 
 end
+

@@ -37,11 +37,11 @@ class Lexicon
 					end
 				end
 
-				 	while element.empty?
-				        element = ['error', word]
+				while element.empty?
+				      element = ['error', word]
 				        result.push(element)
-				        break
-				    end
+				      break
+				end
 		
 		end
 				return result

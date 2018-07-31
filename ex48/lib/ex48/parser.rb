@@ -31,7 +31,7 @@ class Sentence
 
 
 
-  def peek(word_list)
+  def self.peek(word_list)
     #peek at a list of words and return the type of word it is
       if word_list
         word = word_list[0]
@@ -42,7 +42,7 @@ class Sentence
   end
 
 
-  def match(word_list, expecting)
+  def self.match(word_list, expecting)
       if word_list
         word = word_list.shift #take the word off the list
 
@@ -57,10 +57,10 @@ class Sentence
   end
 
 
-  def skip(word_list, word_type)
+  def self.skip(word_list, word_type)
     #skip words that arent going to be useful in the Sentence - "stop words"
-    while peek(word_list) == word_type
-      match(word_list, word_type)
+    while self.peek(word_list) == word_type
+      self.match(word_list, word_type)
     end
   end
 
