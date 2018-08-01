@@ -45,10 +45,16 @@ def test_verb()
 	end
 end
 
-def test_object
+def test_object()
+	assert_equal(["noun", "princess"], (Sentence.parse_object([["stop", "the"], ["noun", "princess"], ["direction", "north"]])))
+	assert_equal(["direction", "north"], (Sentence.parse_object([["stop", "the"], ["direction", "north"]])))
+	assert_raise ParserError do
+		Sentence.parse_object(["verb", "run"])
+	end
 end
 
-def test_sentence
+def test_sentence()
+
 end
 
 end

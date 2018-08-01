@@ -78,6 +78,7 @@ class Sentence
       end
   end
 
+
   def self.parse_verb(word_list)
     self.skip(word_list, 'stop') # skip all the stop words (see lexicon.rb)
 
@@ -89,24 +90,24 @@ class Sentence
   end
 
 
-  def parse_object(word_list)
-    skip(word_list, 'stop')
-    next_word = peek(word_list)
+  def self.parse_object(word_list)
+    self.skip(word_list, 'stop')
+    next_word = self.peek(word_list)
 
       if next_word == 'noun'
-        return match(word_list, 'noun')
+        return self.match(word_list, 'noun')
       elsif next_word == 'direction'
-        return match(word_list, 'direction')
+        return self.match(word_list, 'direction')
       else
         raise ParserError.new("Expected a noun or direction next.")
       end
   end
 
 
-  def parse_sentence(word_list)
-    subject = parse_subject(word_list)
-    verb = parse_verb(word_list)
-    object = parse_object(word_list)
+  def self.parse_sentence(word_list)
+    subject = self.parse_subject(word_list)
+    verb = self.parse_verb(word_list)
+    object = self.parse_object(word_list)
   
 
     return Sentence.new(subject, verb, object)
