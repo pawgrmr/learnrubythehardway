@@ -54,7 +54,10 @@ def test_object()
 end
 
 def test_sentence()
-
+	sentence = Sentence.parse_sentence([["noun", "princess"], ["verb", "run"], ["stop", "the"], ["direction", "north"]])
+	assert_equal(sentence.subject, "princess")
+	assert_equal(sentence.object, "north")
+	assert_equal(sentence.verb, "run")
 end
 
 end
