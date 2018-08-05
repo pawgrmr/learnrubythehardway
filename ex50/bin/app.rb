@@ -6,7 +6,7 @@ set :public_folder, "static"
 set :views, "views"
 
 get '/' do 
-	return 'Hello to the World'
+	return 'Hello World'
 end
 
 get '/hello/' do #created a different handler to return a form
@@ -20,4 +20,11 @@ get '/hello/' do #handler specifies what happens when browser goes to /hello/
 	#handler calls erb function to 'render' the :index view. 
 	#Also give this greet view(i.e. views/index.erb file) the local variables greeting with this setting 
 	#(i.e. Sinatra passes in the greeting variable).
+end
+
+post '/hello/' do #Post handler to indicate we will be receiving a form 
+	greeting = params[:greeting] || "Hi There"
+	name = params[:name] || "Nobody" #accept name parameter
+
+	erb :index, :locals => {'greeting' => greeting, 'name' => name}
 end
