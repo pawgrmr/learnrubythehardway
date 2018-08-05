@@ -9,10 +9,14 @@ get '/' do
 	return 'Hello to the World'
 end
 
+get '/hello/' do #created a different handler to return a form
+	erb :hello_form
+end
+
 get '/hello/' do #handler specifies what happens when browser goes to /hello/
 	greeting = params[:greeting] || "Hi There" #In the handler we get the ?greeting=Hi by using params hashmap
 	#this is a way of saying either use whats in params or use 'Hi There' 
-	erb :index, :locals => {'greeting' => greeting}
+	erb :index, :locals => {'greeting' => greeting, 'name' => name}
 	#handler calls erb function to 'render' the :index view. 
 	#Also give this greet view(i.e. views/index.erb file) the local variables greeting with this setting 
 	#(i.e. Sinatra passes in the greeting variable).
