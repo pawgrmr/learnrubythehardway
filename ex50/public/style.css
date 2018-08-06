@@ -5,6 +5,6 @@ p {
 
 input[type="text"] {
   border: 1px dotted #999;
-  border-radius: 0;
+  border-radius: 10;
 
 }
