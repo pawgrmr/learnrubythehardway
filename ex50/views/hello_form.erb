@@ -1,10 +1,16 @@
+	<head>
+	<link rel="stylesheet" href="/style.css" /> <!-- url helper in sinatra - looks for the stylesheet in root of the app, wherever it is. -->
+	<title>Gothons of Planet</title>
+	</head>
 	<h1>Fill out this form</h1>
 
 	<form action = "/hello/" method = "POST">  
 		<!-- action is where the form is delivered to which is the post '/hello/' handler. Method tells the browser to use this mechanism. -->
 		A Greeting: <input type = "text" name = "greeting">
-		<br/>
+		<br>
 		Your Name: <input type = "text" name = "name">
-		<br/>
-		<input type="submit">
+		<br>
+		Attach File: <input type="file" name="file" id="file" accept="image/*" multiple>
+		<br>
+		<input type="submit" value="submit button">
 	</form>

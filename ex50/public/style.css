@@ -1,0 +1,10 @@
+p {
+	color: red;
+}
+
+
+input[type="text"] {
+  border: 1px dotted #999;
+  border-radius: 0;
+
+}
