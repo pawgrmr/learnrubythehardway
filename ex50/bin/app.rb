@@ -5,6 +5,8 @@ set :static, true
 set :public_folder, "static"
 set :views, "views"
 
+enable :sessions 
+
 get '/' do 
 	return 'Hello World'
 end
