@@ -1,0 +1,15 @@
+<!-- The layout template: takes the common HTML at the top and bottom
+# of each template and puts it into one file. The code 'yield' that says to stop there, run the other view & come back. We're telling sinatra to wrap all of our templates with this HTML. -->
+
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="/style.css" /> <!-- url helper in sinatra - looks for the stylesheet in root of the app, wherever it is. -->
+	<title>Gothons of Planet</title>
+</head>
+<body>
+
+	<%= yield %>
+
+</body>
+</html>
