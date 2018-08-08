@@ -110,6 +110,7 @@ THE_END_LOSER = Room.new("The End",
     into jam jelly.
 	""")
 
+
 ESCAPE_POD.add_paths({
 	'2' => THE_END_LOSER,
 	'*' => THE_END_WINNER
@@ -132,6 +133,7 @@ CENTRAL_CORRIDOR.add_paths({
  	'dodge!' => GENERIC_DEATH,
 	'tell a joke' => LASER_WEAPON_ARMORY
 })
+
 
 START = CENTRAL_CORRIDOR
 

@@ -1,32 +1,44 @@
 require 'sinatra'
+require '.lib/webapp/map.rb'
 
 set :port, 8080
 set :static, true
 set :public_folder, "static"
 set :views, "views"
-
 enable :sessions 
+set :session_secret, 'BADSECRET'
+
 
 get '/' do 
-	return 'Hello World'
+	session[:room] = 'START'
+	redirect to('/game')
 end
 
-get '/hello/' do #created a different handler to return a form
-	erb :hello_form
+
+get '/game' do
+	room = Map::load_room(session)
+
+	if room
+		erb :show_room, :locals => {:room => room}
+	else
+		erb :you_died
+	end
 end
 
-get '/hello/' do #handler specifies what happens when browser goes to /hello/
-	greeting = params[:greeting] || "Hi There" #In the handler we get the ?greeting=Hi by using params hashmap
-	#this is a way of saying either use whats in params or use 'Hi There' 
-	erb :index, :locals => {'greeting' => greeting, 'name' => name}
-	#handler calls erb function to 'render' the :index view. 
-	#Also give this greet view(i.e. views/index.erb file) the local variables greeting with this setting 
-	#(i.e. Sinatra passes in the greeting variable).
+post '/game' do
+	room = Map::load_room(session)
+	action = params[:action]
+
+	if room
+		next_room = room.go(action) || room.go("*")
+
+		if next_room
+			Map::save_room(session, next_room)
+		end
+
+		redirect to('/game')
+	else
+		erb :you_died
+	end
 end
 
-post '/hello/' do #Post handler to indicate we will be receiving a form 
-	greeting = params[:greeting] || "Hi There"
-	name = params[:name] || "Nobody" #accept name parameter
-
-	erb :index, :locals => {'greeting' => greeting, 'name' => name}
-end
