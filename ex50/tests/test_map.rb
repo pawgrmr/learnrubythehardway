@@ -38,9 +38,20 @@ class TestMap < Test::Unit::TestCase
     def test_gothon_game_map()
         assert_equal(Map::GENERIC_DEATH, Map::START.go('shoot!'))
         assert_equal(Map::GENERIC_DEATH, Map::START.go('dodge!'))
-
+       
+        
         room = Map::START.go('tell a joke')
         assert_equal(Map::LASER_WEAPON_ARMORY, room)
+        assert_equal(Map::GENERIC_DEATH, Map::LASER_WEAPON_ARMORY.go('*'))
+        
+        room = Map::LASER_WEAPON_ARMORY.go('0132')
+        assert_equal(Map::THE_BRIDGE, room)
+        assert_equal(Map::GENERIC_DEATH, Map::THE_BRIDGE.go('throw the bomb'))
+
+        room = Map::THE_BRIDGE.go('slowly place the bomb')
+        assert_equal(Map::ESCAPE_POD, room)
+        assert_equal(Map::THE_END_LOSER, Map::ESCAPE_POD.go('2'))
+        assert_equal(Map::THE_END_WINNER, Map::ESCAPE_POD.go('*'))
 
         # complete this test by making it play the game
     end

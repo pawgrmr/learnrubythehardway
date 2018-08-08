@@ -128,8 +128,8 @@ LASER_WEAPON_ARMORY.add_paths({
 })
 
 CENTRAL_CORRIDOR.add_paths({
-	'shoot' => GENERIC_DEATH,
-	'dodge' => GENERIC_DEATH,
+ 	'shoot!' => GENERIC_DEATH, 
+ 	'dodge!' => GENERIC_DEATH,
 	'tell a joke' => LASER_WEAPON_ARMORY
 })
 
