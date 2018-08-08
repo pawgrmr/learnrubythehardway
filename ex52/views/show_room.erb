@@ -1,0 +1,16 @@
+<!-- template to show room as you travel through the game -->
+<h1> <%= room.name %> </h1>
+
+<pre> <!-- preformatted text which is to be presented exactly as written in HTML file -->
+<%= room.description %>
+</pre>
+
+<% if room.name == "death" || room.name == "The End" %>
+	<p><a href="/">Play Again?</a></p> <!-- link to '/' -->
+<% else %>
+	<p>
+	<form action="/game" method="POST">
+		- <input type="text" name="action"> <input type="SUBMIT">
+	</form>
+	</p>
+<% end %>
