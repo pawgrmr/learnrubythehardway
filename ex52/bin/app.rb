@@ -1,5 +1,5 @@
 require 'sinatra'
-require '.lib/webapp/map.rb'
+require './lib/webapp/map.rb'
 
 set :port, 8080
 set :static, true
@@ -19,7 +19,7 @@ get '/game' do
 	room = Map::load_room(session)
 
 	if room
-		erb :show_room, :locals => {:room => room}
+		erb :show_room, :locals => {:room => room}	#display the show_room view
 	else
 		erb :you_died
 	end
@@ -27,7 +27,7 @@ end
 
 post '/game' do
 	room = Map::load_room(session)
-	action = params[:action]
+	action = params[:action] 
 
 	if room
 		next_room = room.go(action) || room.go("*")
@@ -38,7 +38,7 @@ post '/game' do
 
 		redirect to('/game')
 	else
-		erb :you_died
+		erb :you_died #display the you_died view
 	end
 end
 

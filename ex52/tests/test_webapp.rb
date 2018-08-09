@@ -10,19 +10,21 @@ class MyAppTest < Test::Unit::TestCase
 	end
 
 	def test_default
-		get '/'
-		assert_equal 'Hello World', last_response.body
+		get '/', :room => 'START'
+		assert last_response.redirect? #302 status code = redirect
 	end
 
-	def test_hello_form
-		get '/hello/'
-		assert last_response.ok?
-		assert last_response.body.include?('A Greeting')
+	def test_get_room
+		get '/game', params={:room => 'CENTRAL_CORRIDOR', :room => 'START'}
+		assert last_response.ok? #200 status code = OK
 	end
 
-	def test_hello_form_post
-		post '/hello/', params = {:name => 'Frank', :greeting => "Hi"}
+	def test_post
+		post '/game', params={:action => 'tell a joke'}
 		assert last_response.ok?
-		assert last_response.body.include?('I just wanted to say')
 	end
+
 end
+
+
+
